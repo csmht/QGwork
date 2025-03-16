@@ -14,14 +14,20 @@ public class JDBC {
 
         List<User> a = new ArrayList<>();
         String sql;
-        Statement stmt;
-        Connection conn = Pool.setPool();
+        ResultSet rs = null;
+        try {
+            Statement stmt;
+            Connection conn = Pool.setPool();
             sql = "SELECT * FROM user WHERE user.id ='" + id + "'";
 
             stmt = conn.createStatement();
 
-        ResultSet rs = stmt.executeQuery(sql);
-            return rs;
+            rs = stmt.executeQuery(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return rs;
 
 
         }
