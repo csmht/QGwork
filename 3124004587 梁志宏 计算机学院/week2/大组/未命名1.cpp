@@ -132,6 +132,13 @@ int main() {
 	p->t = NULL;
 	int num;
 	for(num = 0;a[num]!='\0';num++){
+		if(a[num]!='-'||a[num]!='+'||a[num]!='*'||a[num]!='/'||(a[num]>='0'&&a[num]<='9')){
+			printf("ÊäÈëÓĞÎóÅ¶~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+			return 0;
+		}
+		
+		
+		
 		if(a[num]>='0'&&a[num]<='9'){
 			char b[500001];
 			int i = 0;
