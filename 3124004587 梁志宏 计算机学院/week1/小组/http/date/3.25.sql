@@ -1,0 +1,1 @@
+INSERT INTO `studentdouctor` (id,NAME,statime,DATE) VALUES ('000','a','09:09:09','2025-03-03 09:09:09')
