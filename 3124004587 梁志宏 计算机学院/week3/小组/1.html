@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录与注册</title>
+    <link rel="stylesheet" href="1.css">
+    
+</head>
+
+<body>
+    <div class="container">
+        <div class="toggle-buttons">
+            <button id="loginButton" class="no active">登录</button>
+            <button id="registerButton" class="no">注册</button>
+        </div>
+        <form id="loginForm" class="form active">
+            <h2>登录</h2>
+            <input type="text" placeholder="用户名" name="loginUserName" required/>
+            <input type="password" placeholder="密码" name="loginEmail" required/>
+            <input type="text" placeholder="验证码" name="loginPassWord" required/>
+            <button type="submit" onclick="handleSubmit()">登录</button>
+        </form>
+        <form id="registerForm" class="form">
+            <h2>注册</h2>
+            <input type="text" placeholder="用户名" name="newUserName" required/>
+            <input type="email" placeholder="邮箱" name="newEmail" required/>
+            <input type="password" placeholder="密码" name="newPassWord" required/>
+            <input type="password" placeholder="再次确认密码" name="againPassWord" required/>
+            <button type="submit" name="registersubmit">注册</button>
+        </form>
+    </div>
+    <script src="1.js"></script>
+</body>
+
+</html>
