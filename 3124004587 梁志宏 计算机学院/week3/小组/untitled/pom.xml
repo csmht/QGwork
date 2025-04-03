@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.example</groupId>
+  <artifactId>untitled</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>untitled Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+
+      <!-- MySQL 驱动依赖 -->
+      <dependency>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+        <!-- 可以根据需要调整版本号 -->
+        <version>9.2.0</version>
+      </dependency>
+
+
+  </dependencies>
+
+
+
+
+  <build>
+    <finalName>untitled</finalName>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <!-- 项目访问路径，可按需修改 -->
+          <path>/</path>
+          <!-- Tomcat端口，可按需修改 -->
+          <port>8080</port>
+          <!-- 解决中文参数乱码，设置URL编码 -->
+          <uriEncoding>UTF-8</uriEncoding>
+          <!-- Tomcat管理界面地址，tomcat7一般为该地址 -->
+          <url>http://localhost:8080/manager/text</url>
+          <!-- 与settings.xml中配置的server标签id一致 -->
+          <server>tomcatServer</server>
+        </configuration>
+      </plugin>
+    </plugins>
+
+  </build>
+</project>
