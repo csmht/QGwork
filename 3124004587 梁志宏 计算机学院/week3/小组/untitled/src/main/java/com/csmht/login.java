@@ -2,10 +2,9 @@ package com.csmht;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -22,15 +21,18 @@ public class login extends HttpServlet {
         String mun=null;
             System.out.println(username);
         try {
-           ResultSet rs =  JDBC.find("user","id",username,"mima",password);
+            Connection conn = Pool.getPool();
+           ResultSet rs =  JDBC.find(conn,"user","id",username,"mima",password);
+            Pool.returnConn(conn);
            boolean pd = false;
            while(rs.next()){
                pd = true;
            }
 
            if(pd){
-                User.pushUsername(username);
-               User.pushPassword(password);
+               HttpSession session = request.getSession();
+               session.setAttribute("username",username);
+
                 response.sendRedirect("User/UserMav.html");
            }
 

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Enumeration;
 
@@ -83,9 +84,10 @@ public class NewUserRouter extends HttpServlet {
         boolean ans = false;
         try {
             int n = 0;
-            n += JDBC.add("student","id",username,"num",mun);
-            n += JDBC.add("user","id",username,"mima",password);
-
+            Connection conn = com.csmht.Pool.getPool();
+            n += JDBC.add(conn,"student","id",username,"num",mun);
+            n += JDBC.add(conn,"user","id",username,"mima",password);
+            com.csmht.Pool.returnConn(conn);
 
 
             if(n!=0){

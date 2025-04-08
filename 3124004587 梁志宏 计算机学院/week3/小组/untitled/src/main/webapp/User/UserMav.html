@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>User</title>
-    <script src="UserMav.css"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="UserMav.css">
 </head>
 <body>
         <div class="One" id="UserMav">
 
-                <h4>学生选课系统</h4>
-                <button type="submit" id="allClass" >查看所有课程</button>
-                <button type="submit" id="canClass" >查看可选课程</button>
-                <button type="submit" id="userClass" >查看以选课程</button>
-                <button type="submit" id="break" onclick="userBreak()" >退出登录</button>
+            <h4>学生选课系统</h4>
+            <button type="submit" id="allClass" onclick="allFind()">查看所有课程</button>
+            <button type="submit" id="canClass" onclick="canFind()">查看可选课程</button>
+            <button type="submit" id="userClass" >查看以选课程</button>
+            <button type="submit" id="userData" >修改个人信息</button>
+            <button type="submit" id="break" onclick="userBreak()" >退出登录</button>
 
         </div>
+
+        <div id="Data"></div>
 
 
 

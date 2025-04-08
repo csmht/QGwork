@@ -9,8 +9,8 @@ public class Pool {
     private static final String url = "jdbc:mysql://localhost:3306/user?useUnicode=true&characterEncoding=UTF-8";
     private static final String user = "root";
     private static final String password = "0603";
-    static int poolmin = 2;
-    static int maxPool = 5;
+    static int poolmin = 1;
+    static int maxPool = 2;
 
     static {
         try {

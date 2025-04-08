@@ -5,9 +5,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
-import static com.csmht.user.User;
 
 
 @WebServlet("/break")
@@ -15,10 +14,10 @@ public class userBreak extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User.pushUsername(null);
-        User.pushMun(null);
-        User.pushPassword(null);
-        response.sendRedirect("login/1.html");
+
+        HttpSession session = request.getSession();
+        session.removeAttribute("username");
+        response.sendRedirect("../login/1.html");
     }
 
 

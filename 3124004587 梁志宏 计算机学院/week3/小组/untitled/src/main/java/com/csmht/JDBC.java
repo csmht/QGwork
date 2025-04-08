@@ -6,8 +6,8 @@ import java.util.List;
 public class JDBC {
 
 
-        public static int add(String where,String... values) throws SQLException {//列+内容
-            Connection conn = Pool.getPool();
+        public static int add(Connection conn,String where,String... values) throws SQLException {//列+内容
+
             Statement stmt = conn.createStatement();
             StringBuilder one = new StringBuilder("INSERT INTO `" + where + "` (");
             StringBuilder two = new StringBuilder(" VALUES (");
@@ -29,39 +29,39 @@ public class JDBC {
                     two.append("'").append(values[i]).append("',");
             }}
             String sql = one + two.toString();
-            Pool.returnConn(conn);
+
             return stmt.executeUpdate(sql);
         }
 
 
-        public static int delete(String where,String list,String id) throws SQLException {
-            Connection conn = Pool.getPool();
+        public static int delete(Connection conn,String where,String list,String id) throws SQLException {
+
             Statement stmt = conn.createStatement();
             String sql = "DELETE FROM " + where +" WHERE "+ list +"='"+ id + "'";
-            Pool.returnConn(conn);
+
             return stmt.executeUpdate(sql);
         }
 
 
 
-    public static int deleteDouctorTime(String Name,Time StaTime) throws SQLException {
-        Connection conn = Pool.getPool();
+    public static int deleteDouctorTime(Connection conn,String Name,Time StaTime) throws SQLException {
+
         Statement stmt = conn.createStatement();
-        Pool.returnConn(conn);
+
         return stmt.executeUpdate("DELETE FROM douctortime WHERE name = '"+ Name +"'AND statime ='"+ StaTime + "'");
         }
 
 
-    public static int deleteStudentDouctor(String id,String Name) throws SQLException {
-        Connection conn = Pool.getPool();
+    public static int deleteStudentDouctor(Connection conn,String id,String Name) throws SQLException {
+
         Statement stmt = conn.createStatement();
-        Pool.returnConn(conn);
+
         return stmt.executeUpdate("DELETE FROM studentdouctor WHERE id = '" + id + "'AND name='" + Name +"'");
         }
 
 
-    public static ResultSet find(String where,Object...values) throws SQLException {
-            Connection conn = Pool.getPool();
+    public static ResultSet find(Connection conn,String where,Object...values) throws SQLException {
+
             ResultSet rs = null;
         StringBuilder sql = new StringBuilder("SELECT * FROM `").append(where).append("`");
             if(values.length>0){sql.append(" WHERE ");}
@@ -84,15 +84,15 @@ public class JDBC {
                     pstmt.setObject(index,value.toString());
                     }
                 }
-        Pool.returnConn(conn);
+
                 return pstmt.executeQuery();
 
     }
 
 
 
-    public static ResultSet find(String main,List<String> where, String...values) throws SQLException {//where 链接表 主表链接列 连接表链接列
-        Connection conn = Pool.getPool();
+    public static ResultSet find(Connection conn,String main,List<String> where, String...values) throws SQLException {//where 链接表 主表链接列 连接表链接列
+
         ResultSet rs = null;
         StringBuilder sql = new StringBuilder("SELECT * FROM `" + main + "` ");
         for(int i=0;i<where.size();i+=3) {
@@ -104,14 +104,14 @@ public class JDBC {
                 sql.append(" AND ");
             }sql.append(values[i]).append(" = '").append(values[i+1]).append("'");}
         PreparedStatement pstmt = conn.prepareStatement(sql.toString());
-        Pool.returnConn(conn);
+
         return pstmt.executeQuery();
     }
 
 
 
-    public static int Edit(String where,String[] who,String...what) throws SQLException {
-            Connection conn = Pool.getPool();
+    public static int Edit(Connection conn,String where,String[] who,String...what) throws SQLException {
+
             ResultSet rs = null;
             StringBuilder sql = new StringBuilder("UPDATE `" + where + "` SET ");
 
@@ -134,7 +134,7 @@ public class JDBC {
 
         PreparedStatement pstmt = conn.prepareStatement(sql.toString());
             int count = pstmt.executeUpdate();
-            Pool.returnConn(conn);
+
 
         return count;
     }
