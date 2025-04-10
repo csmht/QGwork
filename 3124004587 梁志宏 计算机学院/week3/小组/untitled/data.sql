@@ -21,65 +21,74 @@ USE `user`;
 DROP TABLE IF EXISTS `course`;
 
 CREATE TABLE `course` (
-  `id` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '课程名字',
-  `pd` tinyint(1) NOT NULL DEFAULT '0' COMMENT '课程状态，0是可选',
-  `xf` int DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `main` int NOT NULL AUTO_INCREMENT,
+  `course` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `xf` int NOT NULL,
+  `pd` tinyint(1) NOT NULL DEFAULT '0',
+  `max` int NOT NULL DEFAULT '4',
+  PRIMARY KEY (`main`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `course` */
 
-insert  into `course`(`id`,`pd`,`xf`) values ('hhh',0,5),('课程1',1,10),('课程2',1,0),('课程3',0,0),('课程4',0,0),('课程5',0,0),('课程6',0,0);
+insert  into `course`(`main`,`course`,`xf`,`pd`,`max`) values (1,'高等数学',3,1,4),(2,'大学物理',2,0,4),(3,'线性代数',2,0,4),(4,'离散数学',2,0,4),(5,'c程序',2,0,4),(6,'元素反应论',1,0,4);
+
+/*Table structure for table `empty` */
+
+DROP TABLE IF EXISTS `empty`;
+
+CREATE TABLE `empty` (
+  `empty` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`empty`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `empty` */
 
 /*Table structure for table `less` */
 
 DROP TABLE IF EXISTS `less`;
 
 CREATE TABLE `less` (
-  `student` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `course` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  KEY `student` (`student`),
-  KEY `course` (`course`),
-  CONSTRAINT `course` FOREIGN KEY (`course`) REFERENCES `course` (`id`),
-  CONSTRAINT `student` FOREIGN KEY (`student`) REFERENCES `student` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `main` int NOT NULL AUTO_INCREMENT,
+  `id` varchar(10) NOT NULL COMMENT '学号',
+  `course` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '课程',
+  PRIMARY KEY (`main`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 /*Data for the table `less` */
 
-insert  into `less`(`student`,`course`) values ('student1','课程1'),('csmht','hhh'),('csmht','课程4'),('csmht','课程1'),('op','hhh'),('op','课程3');
+insert  into `less`(`main`,`id`,`course`) values (1,'0','高等数学'),(7,'111','元素反应论'),(8,'112','离散数学'),(9,'0','离散数学');
 
 /*Table structure for table `student` */
 
 DROP TABLE IF EXISTS `student`;
 
 CREATE TABLE `student` (
-  `id` varchar(10) NOT NULL COMMENT '学号',
-  `name` varchar(10) DEFAULT NULL COMMENT '名字',
-  `num` varchar(12) DEFAULT NULL COMMENT '手机号',
-  `xf` int DEFAULT NULL COMMENT '学分',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `main` int NOT NULL AUTO_INCREMENT,
+  `id` varchar(10) NOT NULL,
+  `num` varchar(11) DEFAULT NULL,
+  `name` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`main`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 /*Data for the table `student` */
 
-insert  into `student`(`id`,`name`,`num`,`xf`) values ('csmht',NULL,NULL,NULL),('op',NULL,NULL,NULL),('stdent1',NULL,NULL,NULL),('student1','123','1235468',NULL),('student2','12333',NULL,NULL),('student3','444444',NULL,NULL),('student9',NULL,NULL,NULL);
+insert  into `student`(`main`,`id`,`num`,`name`) values (1,'0','0','测试'),(9,'111','13888888','刻晴'),(10,'112','1355555','张三');
 
 /*Table structure for table `user` */
 
 DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
-  `id666` int DEFAULT NULL COMMENT 'id',
-  `mima` int NOT NULL DEFAULT '123456' COMMENT '密码',
-  `id` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '账号',
-  PRIMARY KEY (`id`),
-  FULLTEXT KEY `student-id` (`id`),
-  CONSTRAINT `hahaha` FOREIGN KEY (`id`) REFERENCES `student` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `main` int NOT NULL AUTO_INCREMENT,
+  `id` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '学号',
+  `mima` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
+  PRIMARY KEY (`main`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id666`,`mima`,`id`) values (NULL,1,'op'),(NULL,12345,'stdent1'),(NULL,123456,'student1'),(NULL,123456,'student2'),(NULL,123456,'student3'),(NULL,666666,'student9');
+insert  into `user`(`main`,`id`,`mima`) values (1,'0','0'),(9,'111','666'),(10,'112','888');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
