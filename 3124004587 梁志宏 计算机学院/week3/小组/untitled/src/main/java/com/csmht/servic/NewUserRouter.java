@@ -1,18 +1,15 @@
-package com.csmht;
+package com.csmht.servic;
 
-import jdk.nashorn.internal.parser.JSONParser;
+import com.csmht.dao.JDBC;
+import com.csmht.dao.Pool;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Enumeration;
 
 /**
 *                     _ooOoo_
@@ -84,22 +81,24 @@ public class NewUserRouter extends HttpServlet {
         boolean ans = false;
         try {
             int n = 0;
-            Connection conn = com.csmht.Pool.getPool();
+            Connection conn = Pool.Pool.getPool();
             n += JDBC.add(conn,"student","id",username,"num",mun);
             n += JDBC.add(conn,"user","id",username,"mima",password);
-            com.csmht.Pool.returnConn(conn);
+            Pool.Pool.returnConn(conn);
 
 
             if(n!=0){
                 ans = true;
             }
-        } catch (SQLException ignored) {
+        } catch (Exception ignored) {
             System.out.println(ignored.toString());
         }finally {
-            response.setContentType("text/plain;charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println(ans);
-            out.close();
+//            response.setContentType("text/plain;charset=UTF-8");
+//            PrintWriter out = response.getWriter();
+//            out.println(ans);
+//            out.close();
+            response.getWriter().write(ans+"");
+
         }
 
 

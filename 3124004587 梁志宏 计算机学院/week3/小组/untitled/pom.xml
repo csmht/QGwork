@@ -42,6 +42,10 @@
       <artifactId>commons-io</artifactId>
       <version>2.17.0</version>
     </dependency>
+
+
+
+
   </dependencies>
 
 
@@ -56,15 +60,10 @@
         <artifactId>tomcat7-maven-plugin</artifactId>
         <version>2.2</version>
         <configuration>
-          <!-- 项目访问路径，可按需修改 -->
           <path>/</path>
-          <!-- Tomcat端口，可按需修改 -->
           <port>8080</port>
-          <!-- 解决中文参数乱码，设置URL编码 -->
           <uriEncoding>UTF-8</uriEncoding>
-          <!-- Tomcat管理界面地址，tomcat7一般为该地址 -->
           <url>http://localhost:8080/manager/text</url>
-          <!-- 与settings.xml中配置的server标签id一致 -->
           <server>tomcatServer</server>
         </configuration>
       </plugin>

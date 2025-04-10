@@ -72,7 +72,6 @@ registerForm.addEventListener('submit', async e => {
 
                 if(xhr.responseText == 'true'){
                     alert("注册成功");
-                    window.location.href = 'http://localhost:8080/login';
                 }else if(xhr.responseText == 'flasttow'){
                     document.getElementById("username_err2").style.display='block';
                 }else{alert("注册失败");}

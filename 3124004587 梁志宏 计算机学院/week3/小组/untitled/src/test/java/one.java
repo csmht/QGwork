@@ -1,6 +1,3 @@
-import com.csmht.JDBC;
-
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class one {

@@ -1,4 +1,4 @@
-package com.csmht;
+package com.csmht.dao;
 
 public class user {
     public static final user User = new user();
@@ -10,16 +10,16 @@ public class user {
         return username;
     }
     public void pushUsername(String username) {
-        com.csmht.user.username = username;
+        user.username = username;
     }
     public String getPassword(){return password;    }
     public void pushPassword(String password) {
-        com.csmht.user.password = password;}
+        user.password = password;}
 
     public String getMun(){
         return mun;
     }
     public void pushMun(String mun){
-        com.csmht.user.mun = mun;
+        user.mun = mun;
     }
 }

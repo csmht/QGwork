@@ -1,18 +1,21 @@
-package com.csmht;
+package com.csmht.servic;
+
+import com.csmht.dao.Pool;
+import com.csmht.dao.JDBC;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import static com.csmht.user.User;
 
 
 @WebServlet("/login")
-public class login extends HttpServlet {
+public class UserLogin extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,9 +24,9 @@ public class login extends HttpServlet {
         String mun=null;
             System.out.println(username);
         try {
-            Connection conn = Pool.getPool();
+            Connection conn = Pool.Pool.getPool();
            ResultSet rs =  JDBC.find(conn,"user","id",username,"mima",password);
-            Pool.returnConn(conn);
+            Pool.Pool.returnConn(conn);
            boolean pd = false;
            while(rs.next()){
                pd = true;
@@ -37,7 +40,7 @@ public class login extends HttpServlet {
            }
 
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 

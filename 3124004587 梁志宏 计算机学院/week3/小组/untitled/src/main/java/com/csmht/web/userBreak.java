@@ -1,4 +1,4 @@
-package com.user;
+package com.csmht.web;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet("/break")
+@WebServlet("/User/break")
 public class userBreak extends HttpServlet {
 
     @Override

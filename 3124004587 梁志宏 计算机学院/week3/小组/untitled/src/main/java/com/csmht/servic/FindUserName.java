@@ -1,4 +1,7 @@
-package com.csmht;
+package com.csmht.servic;
+
+import com.csmht.dao.Pool;
+import com.csmht.dao.JDBC;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,26 +11,24 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 
 @WebServlet("/text")
-public class loginuser extends HttpServlet {
+public class FindUserName extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("name");
-//        System.out.println("fuck");
         boolean op = false;
         try {
-            Connection conn = Pool.getPool();
-            ResultSet rs = JDBC.find(conn,"user","id",username);
-            Pool.returnConn(conn);
-            while(rs.next()){
+            Connection conn = Pool.Pool.getPool();
+            ResultSet rs = JDBC.find(conn, "user", "id", username);
+            Pool.Pool.returnConn(conn);
+            while (rs.next()) {
                 op = true;
             }
 
-        } catch (SQLException ignored) {
-            System.out.println("SQLException e) ");
+        } catch (Exception ignored) {
+            System.out.println("Exception e) ");
             op = false;
         }
 
@@ -38,11 +39,6 @@ public class loginuser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
     }
 
 }
